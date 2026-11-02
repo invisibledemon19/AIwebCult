@@ -1,0 +1,22 @@
+mutation CreateSeedData @transaction {
+  user_insertMany(data: [
+    { id: "e0468e21-0610-4493-b673-98218659d685", email: "alice@example.com", fullName: "Alice Smith", role: "customer" },
+    { id: "1c34a2c5-8469-42b7-a36c-2f9f17a94d80", email: "bob@example.com", fullName: "Bob Jones", role: "provider" },
+    { id: "8f5a5e3a-7d1a-45c1-8d26-7f0932857412", email: "charlie@example.com", fullName: "Charlie Brown", role: "provider" }
+  ])
+  category_insertMany(data: [
+    { id: "a58406ca-9755-4705-8854-463870335832", name: "Plumbing", description: "Fixing leaks and pipes" },
+    { id: "b21849a6-5835-430c-8f43-05b1875e5332", name: "Electrician", description: "Wiring and power services" }
+  ])
+  providerProfile_insertMany(data: [
+    { id: "2a050f24-0c58-45e0-b6a4-67252277d3b3", userId: "1c34a2c5-8469-42b7-a36c-2f9f17a94d80", categoryId: "a58406ca-9755-4705-8854-463870335832", bio: "Expert plumber with 10 years experience.", hourlyRate: 75.0, yearsOfExperience: 10, location: "New York" },
+    { id: "3f9543e8-5b32-4752-b13c-783266e51141", userId: "8f5a5e3a-7d1a-45c1-8d26-7f0932857412", categoryId: "b21849a6-5835-430c-8f43-05b1875e5332", bio: "Certified master electrician.", hourlyRate: 95.0, yearsOfExperience: 15, location: "Los Angeles" }
+  ])
+  appointment_insertMany(data: [
+    { id: "7a20c3a8-4c17-4589-91a7-19412f84976a", customerId: "e0468e21-0610-4493-b673-98218659d685", providerId: "1c34a2c5-8469-42b7-a36c-2f9f17a94d80", status: "scheduled", scheduledTime: "2023-11-20T10:00:00Z", totalCost: 150.0 },
+    { id: "6c7d8a9b-0f1e-4d2c-8a3b-5e6f7d8c9b0a", customerId: "e0468e21-0610-4493-b673-98218659d685", providerId: "8f5a5e3a-7d1a-45c1-8d26-7f0932857412", status: "completed", scheduledTime: "2023-11-15T14:30:00Z", totalCost: 200.0 }
+  ])
+  review_insertMany(data: [
+    { id: "4a2c9b8d-7e6f-5d4c-3b2a-1f0e9d8c7b6a", appointmentId: "6c7d8a9b-0f1e-4d2c-8a3b-5e6f7d8c9b0a", providerId: "8f5a5e3a-7d1a-45c1-8d26-7f0932857412", rating: 5, comment: "Excellent service, very professional!" }
+  ])
+}

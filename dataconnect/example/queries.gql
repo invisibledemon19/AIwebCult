@@ -1,0 +1,147 @@
+mutation InsertUser($data: User_Data!) @auth(level: USER) {
+  user_insert(data: $data)
+}
+
+mutation UpsertUser($data: User_Data!) @auth(level: USER) {
+  user_upsert(data: $data)
+}
+
+mutation DeleteUser($id: UUID!) @auth(level: USER) {
+  user_delete(id: $id)
+}
+
+mutation UpdateUser($id: UUID!, $data: User_Data!) @auth(level: USER) {
+  user_update(id: $id, data: $data)
+}
+
+query GetUser($id: UUID!) @auth(level: USER) {
+  user(id: $id) {
+    email
+    fullName
+  }
+}
+
+query ListUsers @auth(level: USER) {
+  users {
+    email
+    fullName
+  }
+}
+
+mutation InsertCategory($data: Category_Data!) @auth(level: PUBLIC, insecureReason: "Categories are public information for all users to browse.") {
+  category_insert(data: $data)
+}
+
+mutation UpsertCategory($data: Category_Data!) @auth(level: PUBLIC, insecureReason: "Categories are public information for all users to browse.") {
+  category_upsert(data: $data)
+}
+
+mutation DeleteCategory($id: UUID!) @auth(level: PUBLIC, insecureReason: "Categories are public.") {
+  category_delete(id: $id)
+}
+
+mutation UpdateCategory($id: UUID!, $data: Category_Data!) @auth(level: PUBLIC, insecureReason: "Categories are public.") {
+  category_update(id: $id, data: $data)
+}
+
+query GetCategory($id: UUID!) @auth(level: PUBLIC, insecureReason: "Categories are public.") {
+  category(id: $id) {
+    name
+  }
+}
+
+query ListCategories @auth(level: PUBLIC, insecureReason: "Categories are public.") {
+  categories {
+    name
+  }
+}
+
+mutation InsertProviderProfile($data: ProviderProfile_Data!) @auth(level: USER) {
+  providerProfile_insert(data: $data)
+}
+
+mutation UpsertProviderProfile($data: ProviderProfile_Data!) @auth(level: USER) {
+  providerProfile_upsert(data: $data)
+}
+
+mutation DeleteProviderProfile($id: UUID!) @auth(level: USER) {
+  providerProfile_delete(id: $id)
+}
+
+mutation UpdateProviderProfile($id: UUID!, $data: ProviderProfile_Data!) @auth(level: USER) {
+  providerProfile_update(id: $id, data: $data)
+}
+
+query GetProviderProfile($id: UUID!) @auth(level: PUBLIC, insecureReason: "Provider profiles are public to allow customers to discover services.") {
+  providerProfile(id: $id) {
+    bio
+    hourlyRate
+  }
+}
+
+query ListProviderProfiles @auth(level: PUBLIC, insecureReason: "Provider profiles are public to allow customers to discover services.") {
+  providerProfiles {
+    bio
+    hourlyRate
+  }
+}
+
+mutation InsertAppointment($data: Appointment_Data!) @auth(level: USER) {
+  appointment_insert(data: $data)
+}
+
+mutation UpsertAppointment($data: Appointment_Data!) @auth(level: USER) {
+  appointment_upsert(data: $data)
+}
+
+mutation DeleteAppointment($id: UUID!) @auth(level: USER) {
+  appointment_delete(id: $id)
+}
+
+mutation UpdateAppointment($id: UUID!, $data: Appointment_Data!) @auth(level: USER) {
+  appointment_update(id: $id, data: $data)
+}
+
+query GetAppointment($id: UUID!) @auth(level: USER) {
+  appointment(id: $id) {
+    status
+    totalCost
+  }
+}
+
+query ListAppointments @auth(level: USER) {
+  appointments(where: { _or: [{ customerId: { eq_expr: "auth.uid" } }, { providerId: { eq_expr: "auth.uid" } }] }) {
+    status
+    scheduledTime
+  }
+}
+
+mutation InsertReview($data: Review_Data!) @auth(level: USER) {
+  review_insert(data: $data)
+}
+
+mutation UpsertReview($data: Review_Data!) @auth(level: USER) {
+  review_upsert(data: $data)
+}
+
+mutation DeleteReview($id: UUID!) @auth(level: USER) {
+  review_delete(id: $id)
+}
+
+mutation UpdateReview($id: UUID!, $data: Review_Data!) @auth(level: USER) {
+  review_update(id: $id, data: $data)
+}
+
+query GetReview($id: UUID!) @auth(level: PUBLIC, insecureReason: "Reviews are public feedback for service providers.") {
+  review(id: $id) {
+    rating
+    comment
+  }
+}
+
+query ListReviews @auth(level: PUBLIC, insecureReason: "Reviews are public feedback for service providers.") {
+  reviews {
+    rating
+    comment
+  }
+}

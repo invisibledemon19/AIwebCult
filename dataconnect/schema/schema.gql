@@ -1,0 +1,38 @@
+type User @table {
+  email: String!
+  fullName: String!
+  role: String!
+  phoneNumber: String
+  profilePictureUrl: String
+}
+
+type Category @table {
+  name: String!
+  description: String
+}
+
+type ProviderProfile @table {
+  user: User!
+  bio: String!
+  hourlyRate: Float!
+  category: Category!
+  yearsOfExperience: Int
+  location: String
+}
+
+type Appointment @table {
+  customer: User!
+  provider: User!
+  status: String!
+  scheduledTime: Timestamp!
+  notes: String
+  totalCost: Float
+}
+
+type Review @table {
+  appointment: Appointment!
+  provider: User!
+  rating: Int!
+  comment: String!
+  createdAt: Timestamp
+}

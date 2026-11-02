@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;700;800&family=Space+Grotesk:wght@500;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  /* HARD INVARIANT: 0px border-radius strictly enforced across every DOM element */
+  *,
+  *::before,
+  *::after {
+    border-radius: 0px !important;
+    box-sizing: border-box;
+  }
+
+  :root {
+    --bg-color: #000000;
+    --text-color: #FFFFFF;
+    --accent-color: #00FF41;
+    --border-color: #FFFFFF;
+  }
+
+  html,
+  body {
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    font-family: 'Space Grotesk', sans-serif;
+    letter-spacing: -0.01em;
+    overflow-x: hidden;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* High-contrast terminal green text selection */
+  ::selection {
+    background-color: #00FF41 !important;
+    color: #000000 !important;
+  }
+
+  ::-moz-selection {
+    background-color: #00FF41 !important;
+    color: #000000 !important;
+  }
+
+  /* Industrial Brutalist Scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #000000;
+    border-left: 1px solid #FFFFFF;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #00FF41;
+    border: 1px solid #000000;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #FFFFFF;
+  }
+
+  /* Accessible focus rings with 0px radius and hard solid offset */
+  :focus-visible {
+    outline: 2px solid #00FF41 !important;
+    outline-offset: 2px !important;
+  }
+}
+
+@layer utilities {
+  .shadow-brutal-green {
+    box-shadow: 4px 4px 0px 0px #00FF41;
+  }
+
+  .shadow-brutal-white {
+    box-shadow: 4px 4px 0px 0px #FFFFFF;
+  }
+
+  .shadow-brutal-black {
+    box-shadow: 4px 4px 0px 0px #00FF41;
+  }
+}
+
