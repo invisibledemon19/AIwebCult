@@ -11,6 +11,7 @@ build/
 # Environment Variables & Secrets
 .env
 .env.*
+.env*.local
 !.env.example
 
 # Logs
@@ -24,7 +25,7 @@ firestore-debug.log*
 # Firebase cache
 .firebase/
 
-# IDE / OS files
+# IDE & OS Files
 .vscode/
 .idea/
 .DS_Store
